@@ -3,13 +3,11 @@ class Solution:
         stack = []
         n = len(heights)
         maxarea = 0
+        heights.append(0)
 
-        for i in range(n+1):
-            currheight = 0 if i == n else heights[i]
-
-            while stack and currheight < heights[stack[-1]]:
-                poppedindex = stack.pop()
-                height = heights[poppedindex]
+        for i,h in enumerate(heights):
+            while stack and h < heights[stack[-1]]:
+                height = heights[stack.pop()]
 
                 if stack:
                     width = i - stack[-1] -1
